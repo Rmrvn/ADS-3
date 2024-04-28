@@ -1,36 +1,32 @@
 // Copyright 2021 NNTU-CS
+int cbinsearch(int* arr, int size, int value) {
+  int c = 0;
+  int lt = 0;
+  int rt = size - 1;
 
-int cbinsearch(int *arr, int size, int value) {#include <iostream>
-
-int binarySearchCount(int *arr, int size, int value) {
-    int count = 0;
-    int left = 0;
-    int right = size - 1;
-
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-
+    while (lt <= rt) {
+        int mid = lt + (rt - lt) / 2;
         if (arr[mid] == value) {
-            count++;
-            int pos = mid - 1;
-            // Найти дополнительные вхождения слева
-            while (pos >= 0 && arr[pos] == value) {
-                count++;
-                pos--;
+ c++;
+            int i = mid - 1;
+            while (i >= 0 && arr[i] == value) {
+ c++;
+ i--;
             }
-            pos = mid + 1;
-            // Найти дополнительные вхождения справа
-            while (pos < size && arr[pos] == value) {
-                count++;
-                pos++;
+ i = mid + 1;
+            while (i < size && arr[i] == value) {
+ c++;
+ i++;
             }
-            break;
-        } else if (arr[mid] < value) {
-            left = mid + 1;
+            return c;
+ } else if (arr[mid] < value) {
+            lt = mid + 1;
         } else {
-            right = mid - 1;
+            rt = mid - 1;
         }
     }
-    return count;
-  return 0; // если ничего не найдено
+    if (c == 0) {
+        return 0;
+    }
+    return c;
 }
